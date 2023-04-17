@@ -1743,7 +1743,7 @@ class _EmergencyContactScreenState extends State<EmergencyContactScreen> {
               ),
             ),
             SizedBox(height: 8),
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 3; i++)
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 8),
                 child: TextField(
