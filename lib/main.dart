@@ -617,7 +617,7 @@ class _QuickCallingScreenState extends State<QuickCallingScreen> {
               },
               child: Container(
                 // margin: EdgeInsets.only(left: 16),
-                margin: EdgeInsets.only(right: 20),
+                //margin: EdgeInsets.only(right: 20),
                 child: Text(
                   'SAHAYAK',
                   style: TextStyle(
@@ -1024,7 +1024,7 @@ class _HealthcareScreenState extends State<HealthcareScreen> {
                 },
                 child: Container(
                   // margin: EdgeInsets.only(left: 16),
-                  margin: EdgeInsets.only(right: 20),
+                  //margin: EdgeInsets.only(right: 20),
                   child: Text(
                     'SAHAYAK',
                     style: TextStyle(
@@ -1592,12 +1592,13 @@ class _EmergencyContactScreenState extends State<EmergencyContactScreen> {
               },
               child: Container(
                 // margin: EdgeInsets.only(left: 16),
-                margin: EdgeInsets.only(right: 20),
+                //margin: EdgeInsets.only(right: 20),
                 child: Text(
                   'SAHAYAK',
                   style: TextStyle(
                     fontFamily: 'Nunito',
                     color: Color.fromRGBO(255, 96, 56, 1),
+
                     fontSize: 27,
                     fontWeight: FontWeight.bold,
                   ),
