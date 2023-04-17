@@ -767,8 +767,9 @@ class _QuickCallingScreenState extends State<QuickCallingScreen> {
                     Text(
                       categories[index]['name'],
                       style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Montserrat',
+                        fontSize: 20,
+                        // fontWeight: FontWeight.bold,
                       ),
                     ),
                     SizedBox(height: 16),
@@ -826,6 +827,7 @@ class _QuickCallingScreenState extends State<QuickCallingScreen> {
                                     Text(
                                       contact['name'],
                                       style: TextStyle(
+                                        fontFamily: 'Montserrat',
                                         fontSize: 16,
                                         fontWeight: FontWeight.bold,
                                       ),
@@ -1008,139 +1010,139 @@ class _HealthcareScreenState extends State<HealthcareScreen> {
 
     return Scaffold(
       backgroundColor: Color.fromRGBO(91, 114, 219, 1),
-      appBar: AppBar(
-        backgroundColor: Color.fromRGBO(255, 232, 230, 1),
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => MainScreen()),
-                );
-
-              },
-              child: Container(
-                margin: EdgeInsets.only(right: 20),
-
-                child: Text(
-                  'SAHAYAK',
-                  style: TextStyle(
-                    fontFamily: 'Nunito',
-                    color: Color.fromRGBO(255, 96, 56, 1),
-                    fontSize: 27,
-                    fontWeight: FontWeight.bold,
+        appBar: AppBar(
+          backgroundColor: Color.fromRGBO(255, 232, 230, 1),
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => MainScreen()),
+                  );
+                },
+                child: Container(
+                  // margin: EdgeInsets.only(left: 16),
+                  margin: EdgeInsets.only(right: 20),
+                  child: Text(
+                    'SAHAYAK',
+                    style: TextStyle(
+                      fontFamily: 'Nunito',
+                      color: Color.fromRGBO(255, 96, 56, 1),
+                      fontSize: 27,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ),
-            ),
-            Row(
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => QuickCallingScreen()),
-                    );
-                  },
-                  child: Container(
-                    //margin: EdgeInsets.only(right: 16),
-                    child: IconButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => QuickCallingScreen()),
-                        );
-                      },
-                      icon: Image.asset('assets/Call_icon.png'),
-                      iconSize: 40,
+              Row(
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => QuickCallingScreen()),
+                      );
+                    },
+                    child: Container(
+                      // margin: EdgeInsets.only(right:5),
+
+                      child: IconButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => QuickCallingScreen()),
+                          );
+                        },
+                        icon: Image.asset('assets/Call_icon.png'),
+                        iconSize: 40,
+                      ),
                     ),
                   ),
-                ),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => HealthcareScreen()),
-                    );
-
-                  },
-                  child: Container(
-                    margin: EdgeInsets.only(right: 16),
-                    child: IconButton(
-                      onPressed: () {
-                        Navigator.push(
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) => HealthcareScreen()),
-                        );
-                      },
-                      icon: Image.asset('assets/Healthcare_icon.png'),
-                      iconSize: 40,
-                    ),
-                  ),
-                ),
-                GestureDetector(
-                  onTap: () async {
-                    // Read emergency contact and contacts list from storage
-                    SharedPreferences prefs = await SharedPreferences.getInstance();
-                    String emergencyNumber = prefs.getString('emergency_contact') ?? '911';
-                    List<String> recipients = List<String>.from(prefs.getStringList('emergency_contacts') ?? []);
-                    print(emergencyNumber);
-                    print(recipients.toString());
-                    // Call emergency contact
-                    launch("tel:$emergencyNumber");
-
-                    // Send emergency SMS
-                    String message = 'Emergency! Please help me!'; // Change this to your emergency SMS message
-                    recipients.forEach((recipient) async {
-                      String _result = await sendSMS(
-                        message: message,
-                        recipients: [recipient],
                       );
-                      print(_result);
-                    });
-                  },
 
-                  onLongPress: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => EmergencyContactScreen()),
-                    );
-                  },
-                  child: Container(
-                   // margin: EdgeInsets.only(right: 16),
-                    child: IconButton(
-                      onPressed: () async {
-                        // Read emergency contact and contacts list from storage
-                        SharedPreferences prefs = await SharedPreferences.getInstance();
-                        String emergencyNumber = prefs.getString('emergency_contact') ?? '911';
-                        List<String> recipients = List<String>.from(prefs.getStringList('emergency_contacts') ?? []);
-                        print(emergencyNumber);
-                        print(recipients.toString());
-                        // Call emergency contact
-                        launch("tel:$emergencyNumber");
-
-                        // Send emergency SMS
-                        String message = 'Emergency! Please help me!'; // Change this to your emergency SMS message
-                        recipients.forEach((recipient) async {
-                          String _result = await sendSMS(
-                            message: message,
-                            recipients: [recipient],
+                    },
+                    child: Container(
+                      // margin: EdgeInsets.only(right: 16),
+                      child: IconButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => HealthcareScreen()),
                           );
-                          print(_result);
-                        });
-                      },
-                      icon: Image.asset('assets/SOS_icon.png'),
-                      iconSize: 40,
+                        },
+                        icon: Image.asset('assets/Healthcare_icon.png'),
+                        iconSize: 40,
+                      ),
                     ),
                   ),
-                ),
-              ],
-            ),
-          ],
+                  GestureDetector(
+                    onTap: () async {
+                      // Read emergency contact and contacts list from storage
+                      SharedPreferences prefs = await SharedPreferences.getInstance();
+                      String emergencyNumber = prefs.getString('emergency_contact') ?? '911';
+                      List<String> recipients = List<String>.from(prefs.getStringList('emergency_contacts') ?? []);
+                      print(emergencyNumber);
+                      print(recipients.toString());
+                      // Call emergency contact
+                      launch("tel:$emergencyNumber");
+
+                      // Send emergency SMS
+                      String message = 'Emergency! Please help me!'; // Change this to your emergency SMS message
+                      recipients.forEach((recipient) async {
+                        String _result = await sendSMS(
+                          message: message,
+                          recipients: [recipient],
+                        );
+                        print(_result);
+                      });
+                    },
+
+                    onLongPress: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => EmergencyContactScreen()),
+                      );
+                    },
+                    child: Container(
+                      // margin: EdgeInsets.only(right: 16),
+                      child: IconButton(
+                        onPressed: () async {
+                          // Read emergency contact and contacts list from storage
+                          SharedPreferences prefs = await SharedPreferences.getInstance();
+                          String emergencyNumber = prefs.getString('emergency_contact') ?? '911';
+                          List<String> recipients = List<String>.from(prefs.getStringList('emergency_contacts') ?? []);
+                          print(emergencyNumber);
+                          print(recipients.toString());
+                          // Call emergency contact
+                          launch("tel:$emergencyNumber");
+
+                          // Send emergency SMS
+                          String message = 'Emergency! Please help me!'; // Change this to your emergency SMS message
+                          recipients.forEach((recipient) async {
+                            String _result = await sendSMS(
+                              message: message,
+                              recipients: [recipient],
+                            );
+                            print(_result);
+                          });
+                        },
+                        icon: Image.asset('assets/SOS_icon.png'),
+                        iconSize: 40,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
-      ),
 
         body: Column(
           children: [
@@ -1573,11 +1575,13 @@ class _EmergencyContactScreenState extends State<EmergencyContactScreen> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
+      backgroundColor: Color.fromRGBO(255, 204, 148, 1),
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Color.fromRGBO(255, 232, 230, 1),
         title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             GestureDetector(
               onTap: () {
@@ -1585,18 +1589,16 @@ class _EmergencyContactScreenState extends State<EmergencyContactScreen> {
                   context,
                   MaterialPageRoute(builder: (context) => MainScreen()),
                 );
-
               },
               child: Container(
                 // margin: EdgeInsets.only(left: 16),
-                margin: EdgeInsets.only(right: 47),
-
+                margin: EdgeInsets.only(right: 20),
                 child: Text(
                   'SAHAYAK',
                   style: TextStyle(
                     fontFamily: 'Nunito',
                     color: Color.fromRGBO(255, 96, 56, 1),
-                    fontSize: 36,
+                    fontSize: 27,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -1612,10 +1614,17 @@ class _EmergencyContactScreenState extends State<EmergencyContactScreen> {
                     );
                   },
                   child: Container(
-                    margin: EdgeInsets.only(right: 16),
-                    child: CircleAvatar(
-                      backgroundColor: Colors.blue,
-                      child: Icon(Icons.call),
+                    // margin: EdgeInsets.only(right:5),
+
+                    child: IconButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => QuickCallingScreen()),
+                        );
+                      },
+                      icon: Image.asset('assets/Call_icon.png'),
+                      iconSize: 40,
                     ),
                   ),
                 ),
@@ -1628,10 +1637,16 @@ class _EmergencyContactScreenState extends State<EmergencyContactScreen> {
 
                   },
                   child: Container(
-                    margin: EdgeInsets.only(right: 16),
-                    child: CircleAvatar(
-                      backgroundColor: Colors.green,
-                      child: Icon(Icons.local_hospital),
+                    // margin: EdgeInsets.only(right: 16),
+                    child: IconButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => HealthcareScreen()),
+                        );
+                      },
+                      icon: Image.asset('assets/Healthcare_icon.png'),
+                      iconSize: 40,
                     ),
                   ),
                 ),
@@ -1664,10 +1679,30 @@ class _EmergencyContactScreenState extends State<EmergencyContactScreen> {
                     );
                   },
                   child: Container(
-                    margin: EdgeInsets.only(right: 16),
-                    child: CircleAvatar(
-                      backgroundColor: Colors.red,
-                      child: Icon(Icons.warning),
+                    // margin: EdgeInsets.only(right: 16),
+                    child: IconButton(
+                      onPressed: () async {
+                        // Read emergency contact and contacts list from storage
+                        SharedPreferences prefs = await SharedPreferences.getInstance();
+                        String emergencyNumber = prefs.getString('emergency_contact') ?? '911';
+                        List<String> recipients = List<String>.from(prefs.getStringList('emergency_contacts') ?? []);
+                        print(emergencyNumber);
+                        print(recipients.toString());
+                        // Call emergency contact
+                        launch("tel:$emergencyNumber");
+
+                        // Send emergency SMS
+                        String message = 'Emergency! Please help me!'; // Change this to your emergency SMS message
+                        recipients.forEach((recipient) async {
+                          String _result = await sendSMS(
+                            message: message,
+                            recipients: [recipient],
+                          );
+                          print(_result);
+                        });
+                      },
+                      icon: Image.asset('assets/SOS_icon.png'),
+                      iconSize: 40,
                     ),
                   ),
                 ),
@@ -1684,18 +1719,25 @@ class _EmergencyContactScreenState extends State<EmergencyContactScreen> {
             Text(
               'Emergency Contact',
               style: TextStyle(
+                fontFamily: 'Montserrat',
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
-                color: Colors.red,
-              ),
+                color: Colors.black,
+
+        ),
             ),
             SizedBox(height: 8),
             TextField(
               controller: _emergencyContactController,
               keyboardType: TextInputType.phone,
+              style: TextStyle(
+                fontFamily: 'Montserrat',
+                color: Color.fromRGBO(255, 232, 230, 1),
+              ),
               decoration: InputDecoration(
                 hintText: 'Enter emergency contact number',
-                border: OutlineInputBorder(),
+                border: OutlineInputBorder(
+                ),
               ),
             ),
             SizedBox(height: 16),
@@ -1705,7 +1747,7 @@ class _EmergencyContactScreenState extends State<EmergencyContactScreen> {
                 fontFamily: 'Montserrat',
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
-                color: Color.fromRGBO(255, 96, 56, 1),
+                  color: Colors.black,
               ),
             ),
             SizedBox(height: 8),
@@ -1713,6 +1755,9 @@ class _EmergencyContactScreenState extends State<EmergencyContactScreen> {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 8),
                 child: TextField(
+                  style: TextStyle(
+                    fontFamily: 'Montserrat',
+                  ),
                   controller: _contactControllers[i],
                   keyboardType: TextInputType.phone,
                   decoration: InputDecoration(
@@ -1733,8 +1778,15 @@ class _EmergencyContactScreenState extends State<EmergencyContactScreen> {
 
                 Navigator.pop(context);
               },
-              child: Text('Save'),
+              child: Text(
+                  'Save',
+                  style: TextStyle(
+                    fontFamily: 'Montserrat',
+                    color: Color.fromRGBO(255, 96, 56, 1),
+                  )
+              ),
               style: ElevatedButton.styleFrom(
+                backgroundColor:  Color.fromRGBO(255, 232, 230, 1),
                 
                 shape: RoundedRectangleBorder(
                   
