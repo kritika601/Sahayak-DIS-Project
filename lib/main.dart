@@ -344,14 +344,18 @@ class MainScreen extends StatelessWidget {
                           Container(
                             decoration: BoxDecoration(
                               color: Colors.red[100],
-
                               borderRadius: BorderRadius.circular(100),
                             ),
-                            padding: EdgeInsets.all(24),
-                            child: Icon(
-                              Icons.call,
-                              size: 80,
-                              color: Colors.red,
+                            padding: EdgeInsets.all(1),
+                            child: IconButton(
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => QuickCallingScreen()),
+                                );
+                              },
+                              icon: Image.asset('assets/Call_icon.png'),
+                              iconSize: 100,
                             ),
                           ),
                           SizedBox(height: 16),
@@ -385,11 +389,16 @@ class MainScreen extends StatelessWidget {
                               color: Colors.red[100],
                               borderRadius: BorderRadius.circular(100),
                             ),
-                            padding: EdgeInsets.all(24),
-                            child: Icon(
-                              Icons.local_hospital,
-                              size: 80,
-                              color: Colors.red,
+                            padding: EdgeInsets.all(1),
+                            child: IconButton(
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => HealthcareScreen()),
+                                );
+                              },
+                              icon: Image.asset('assets/Healthcare_icon.png'),
+                              iconSize: 100,
                             ),
                           ),
                           SizedBox(height: 16),
@@ -443,11 +452,30 @@ class MainScreen extends StatelessWidget {
                               color: Colors.red[100],
                               borderRadius: BorderRadius.circular(100),
                             ),
-                            padding: EdgeInsets.all(24),
-                            child: Icon(
-                              Icons.warning,
-                              size: 80,
-                              color: Colors.red,
+                            padding: EdgeInsets.all(1),
+                            child: IconButton(
+                              onPressed: () async {
+                                // Read emergency contact and contacts list from storage
+                                SharedPreferences prefs = await SharedPreferences.getInstance();
+                                String emergencyNumber = prefs.getString('emergency_contact') ?? '911';
+                                List<String> recipients = List<String>.from(prefs.getStringList('emergency_contacts') ?? []);
+                                print(emergencyNumber);
+                                print(recipients.toString());
+                                // Call emergency contact
+                                launch("tel:$emergencyNumber");
+
+                                // Send emergency SMS
+                                String message = 'Emergency! Please help me!'; // Change this to your emergency SMS message
+                                recipients.forEach((recipient) async {
+                                  String _result = await sendSMS(
+                                    message: message,
+                                    recipients: [recipient],
+                                  );
+                                  print(_result);
+                                });
+                              },
+                              icon: Image.asset('assets/SOS_icon.png'),
+                              iconSize: 100,
                             ),
                           ),
                           SizedBox(height: 16),
@@ -574,8 +602,9 @@ class _QuickCallingScreenState extends State<QuickCallingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromRGBO(240, 159, 191, 1),
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Color.fromRGBO(255, 232, 230, 1),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
