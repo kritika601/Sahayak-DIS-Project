@@ -1007,8 +1007,9 @@ class _HealthcareScreenState extends State<HealthcareScreen> {
     DateTime today = DateTime.now();
 
     return Scaffold(
+      backgroundColor: Color.fromRGBO(91, 114, 219, 1),
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Color.fromRGBO(255, 232, 230, 1),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
@@ -1021,14 +1022,14 @@ class _HealthcareScreenState extends State<HealthcareScreen> {
 
               },
               child: Container(
-                margin: EdgeInsets.only(right: 47),
+                margin: EdgeInsets.only(right: 20),
 
                 child: Text(
                   'SAHAYAK',
                   style: TextStyle(
                     fontFamily: 'Nunito',
                     color: Color.fromRGBO(255, 96, 56, 1),
-                    fontSize: 36,
+                    fontSize: 27,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -1044,10 +1045,16 @@ class _HealthcareScreenState extends State<HealthcareScreen> {
                     );
                   },
                   child: Container(
-                    margin: EdgeInsets.only(right: 16),
-                    child: CircleAvatar(
-                      backgroundColor: Colors.blue,
-                      child: Icon(Icons.call),
+                    //margin: EdgeInsets.only(right: 16),
+                    child: IconButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => QuickCallingScreen()),
+                        );
+                      },
+                      icon: Image.asset('assets/Call_icon.png'),
+                      iconSize: 40,
                     ),
                   ),
                 ),
@@ -1061,9 +1068,15 @@ class _HealthcareScreenState extends State<HealthcareScreen> {
                   },
                   child: Container(
                     margin: EdgeInsets.only(right: 16),
-                    child: CircleAvatar(
-                      backgroundColor: Colors.green,
-                      child: Icon(Icons.local_hospital),
+                    child: IconButton(
+                      onPressed: () {
+                        Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => HealthcareScreen()),
+                        );
+                      },
+                      icon: Image.asset('assets/Healthcare_icon.png'),
+                      iconSize: 40,
                     ),
                   ),
                 ),
@@ -1096,10 +1109,30 @@ class _HealthcareScreenState extends State<HealthcareScreen> {
                     );
                   },
                   child: Container(
-                    margin: EdgeInsets.only(right: 16),
-                    child: CircleAvatar(
-                      backgroundColor: Colors.red,
-                      child: Icon(Icons.warning),
+                   // margin: EdgeInsets.only(right: 16),
+                    child: IconButton(
+                      onPressed: () async {
+                        // Read emergency contact and contacts list from storage
+                        SharedPreferences prefs = await SharedPreferences.getInstance();
+                        String emergencyNumber = prefs.getString('emergency_contact') ?? '911';
+                        List<String> recipients = List<String>.from(prefs.getStringList('emergency_contacts') ?? []);
+                        print(emergencyNumber);
+                        print(recipients.toString());
+                        // Call emergency contact
+                        launch("tel:$emergencyNumber");
+
+                        // Send emergency SMS
+                        String message = 'Emergency! Please help me!'; // Change this to your emergency SMS message
+                        recipients.forEach((recipient) async {
+                          String _result = await sendSMS(
+                            message: message,
+                            recipients: [recipient],
+                          );
+                          print(_result);
+                        });
+                      },
+                      icon: Image.asset('assets/SOS_icon.png'),
+                      iconSize: 40,
                     ),
                   ),
                 ),
@@ -1108,6 +1141,7 @@ class _HealthcareScreenState extends State<HealthcareScreen> {
           ],
         ),
       ),
+
         body: Column(
           children: [
 
@@ -1119,7 +1153,7 @@ class _HealthcareScreenState extends State<HealthcareScreen> {
                 fontFamily: 'Montserrat',
                 fontSize: 25.0,
                 fontWeight: FontWeight.bold,
-                color: Color.fromRGBO(255, 96, 56, 1),
+                color: Colors.white,
               ),
               textAlign: TextAlign.center,
               // textAlignVertical: TextAlignVertical.center,
@@ -1167,7 +1201,7 @@ class _HealthcareScreenState extends State<HealthcareScreen> {
                     },
                     background: Container(
 
-                      color: Colors.red,
+                      color: Color.fromRGBO(255, 96, 56, 1),
                       alignment: Alignment.centerRight,
                       padding: EdgeInsets.only(right: 16.0),
                       child: Icon(
@@ -1190,6 +1224,7 @@ class _HealthcareScreenState extends State<HealthcareScreen> {
           ],
         ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Color.fromRGBO(255, 232, 230, 1),
         onPressed: () async {
           // Show dialog to add new medication
           final medication = await showDialog<Medication>(
@@ -1283,7 +1318,7 @@ class _HealthcareScreenState extends State<HealthcareScreen> {
                                     decoration: BoxDecoration(
                                       shape: BoxShape.circle,
                                       color: _selectedDaysOfWeek.contains(i)
-                                          ? Colors.blue
+                                          ? Color.fromRGBO(255, 96, 56, 1)
                                           : Colors.grey,
                                     ),
                                     child: Center(
@@ -1291,7 +1326,7 @@ class _HealthcareScreenState extends State<HealthcareScreen> {
                                         _getWeekdayAbbreviation(i),
                                         style: TextStyle(
                                           color: _selectedDaysOfWeek.contains(i)
-                                              ? Colors.white
+                                              ? Color.fromRGBO(255, 232, 230, 1)
                                               : Colors.black,
                                           fontWeight: FontWeight.bold,
                                         ),
@@ -1340,7 +1375,10 @@ class _HealthcareScreenState extends State<HealthcareScreen> {
           //   _medications.add(medication);
           // });
         },
-        child: Icon(Icons.add),
+        child: Icon(
+            Icons.add,
+                color: Color.fromRGBO(255, 96, 56, 1),
+        ),
       )
     );
   }
