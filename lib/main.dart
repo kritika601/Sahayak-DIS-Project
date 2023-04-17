@@ -426,6 +426,7 @@ class MainScreen extends StatelessWidget {
                             recipients: [recipient],
                           );
                           print(_result);
+                          print("hellpo");
                         });
                       },
 
@@ -548,23 +549,69 @@ class _QuickCallingScreenState extends State<QuickCallingScreen> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Add Contact'),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16.0),
+          ),
+          title: Text(
+            'Add Contact',
+            style: TextStyle(
+              fontSize: 20.0,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
+              SizedBox(height: 8.0),
               TextField(
                 controller: nameController,
-                decoration: InputDecoration(hintText: 'Name'),
+                decoration: InputDecoration(
+                  hintText: 'Name',
+                  filled: true,
+                  fillColor: Colors.grey[200],
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8.0),
+                    borderSide: BorderSide.none,
+                  ),
+                  contentPadding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
+                  prefixIcon: Icon(Icons.person),
+                ),
+                style: TextStyle(fontSize: 16.0),
               ),
+              SizedBox(height: 16.0),
               TextField(
                 controller: numberController,
-                decoration: InputDecoration(hintText: 'Phone Number'),
+                decoration: InputDecoration(
+                  hintText: 'Phone Number',
+                  filled: true,
+                  fillColor: Colors.grey[200],
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8.0),
+                    borderSide: BorderSide.none,
+                  ),
+                  contentPadding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
+                  prefixIcon: Icon(Icons.phone),
+                ),
                 keyboardType: TextInputType.phone,
+                style: TextStyle(fontSize: 16.0),
               ),
+              SizedBox(height: 16.0),
               TextField(
                 controller: categoryController,
-                decoration: InputDecoration(hintText: 'Category'),
+                decoration: InputDecoration(
+                  hintText: 'Category',
+                  filled: true,
+                  fillColor: Colors.grey[200],
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8.0),
+                    borderSide: BorderSide.none,
+                  ),
+                  contentPadding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
+                  prefixIcon: Icon(Icons.category),
+                ),
+                style: TextStyle(fontSize: 16.0),
               ),
+              SizedBox(height: 8.0),
             ],
           ),
           actions: [
@@ -573,7 +620,13 @@ class _QuickCallingScreenState extends State<QuickCallingScreen> {
                 // Close dialog
                 Navigator.of(context).pop();
               },
-              child: Text('Cancel'),
+              child: Text(
+                'Cancel',
+                style: TextStyle(
+                  color: Colors.grey[700],
+                  fontSize: 16.0,
+                ),
+              ),
             ),
             ElevatedButton(
               onPressed: () {
@@ -583,10 +636,28 @@ class _QuickCallingScreenState extends State<QuickCallingScreen> {
                 // Close dialog
                 Navigator.of(context).pop();
               },
-              child: Text('Add'),
+              child: Text(
+                'Add',
+                style: TextStyle(
+                  fontSize: 16.0,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                ),
+                padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                  EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
+                ),
+              ),
             ),
           ],
         );
+
       },
     );
   }
@@ -742,116 +813,130 @@ class _QuickCallingScreenState extends State<QuickCallingScreen> {
             child: ListView.builder(
             itemCount: categories.length,
             itemBuilder: (BuildContext context, int index) {
-              return Container(
-                margin: EdgeInsets.all(16),
-                padding: EdgeInsets.all(16),
-                decoration: BoxDecoration(
+              return Card(
+                elevation: 2,
+                shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(16),
-                  border: Border.all(
-                    // color: Colors.grey[300],
-                    width: 1,
-                  ),
                 ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      categories[index]['name'],
-                      style: TextStyle(
-                        fontFamily: 'Montserrat',
-                        fontSize: 20,
-                        // fontWeight: FontWeight.bold,
+                margin: EdgeInsets.all(16),
+                child: Container(
+                  padding: EdgeInsets.all(16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        categories[index]['name'],
+                        style: TextStyle(
+                          fontFamily: 'Montserrat',
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                        ),
                       ),
-                    ),
-                    SizedBox(height: 16),
-                    ListView.builder(
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
-                      itemCount: categories[index]['contacts'].length,
-                      itemBuilder: (BuildContext context, int contactIndex) {
-                        Map<String, dynamic> contact = categories[index]['contacts'][contactIndex];
-                        return GestureDetector(
-                          onLongPress: () {
-                            showDialog(
-                              context: context,
-                              builder: (context) => AlertDialog(
-                                title: Text("Delete Contact"),
-                                content: Text("Are you sure you want to delete this contact?"),
-                                actions: [
-                                  TextButton(
-                                    child: Text("Cancel"),
-                                    onPressed: () {
-                                      Navigator.of(context).pop();
-                                    },
+                      SizedBox(height: 16),
+                      ListView.builder(
+                        shrinkWrap: true,
+                        physics: NeverScrollableScrollPhysics(),
+                        itemCount: categories[index]['contacts'].length,
+                        itemBuilder: (BuildContext context, int contactIndex) {
+                          Map<String, dynamic> contact = categories[index]['contacts'][contactIndex];
+                          return GestureDetector(
+                            onLongPress: () {
+                              showDialog(
+                                context: context,
+                                builder: (context) => AlertDialog(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(16),
                                   ),
-                                  TextButton(
-                                    child: Text("Delete"),
-                                    onPressed: () {
-                                      // Delete contact
-                                      setState(() {
-                                        categories[index]['contacts'].removeAt(contactIndex);
-                                        saveCategories(categories);
-                                      });
-                                      Navigator.of(context).pop();
-
-                                      // Check if category is empty and delete if necessary
-                                      if (categories[index]['contacts'].isEmpty) {
+                                  title: Text("Delete Contact", style: TextStyle(fontWeight: FontWeight.bold)),
+                                  content: Text("Are you sure you want to delete this contact?", style: TextStyle(fontSize: 16)),
+                                  actions: [
+                                    TextButton(
+                                      child: Text("Cancel", style: TextStyle(color: Colors.grey)),
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                    ),
+                                    ElevatedButton(
+                                      style: ElevatedButton.styleFrom(primary: Colors.red),
+                                      child: Text("Delete"),
+                                      onPressed: () {
+                                        // Delete contact
                                         setState(() {
-                                          categories.removeAt(index);
+                                          categories[index]['contacts'].removeAt(contactIndex);
                                           saveCategories(categories);
                                         });
-                                      }
-                                    },
-                                  ),
-                                ],
-                              ),
-                            );
-                          },
+                                        Navigator.of(context).pop();
 
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      contact['name'],
-                                      style: TextStyle(
-                                        fontFamily: 'Montserrat',
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                      ),
+                                        // Check if category is empty and delete if necessary
+                                        if (categories[index]['contacts'].isEmpty) {
+                                          setState(() {
+                                            categories.removeAt(index);
+                                            saveCategories(categories);
+                                          });
+                                        }
+                                      },
                                     ),
                                   ],
                                 ),
-                              ),
-                              GestureDetector(
-                                onTap: () {
-                                  makePhoneCall(contact['number']);
+                              );
+                            },
 
-                                },
-                                child: Container(
-                                  padding: EdgeInsets.all(8),
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    // color: Colors.blue,
-                                  ),
-                                  child: Icon(
-                                    Icons.call,
-                                    color: Colors.blue,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        contact['name'],
+                                        style: TextStyle(
+                                          fontFamily: 'Montserrat',
+                                          fontSize: 18,
+                                          // fontWeight: FontWeight.bold,
+                                          color: Colors.black,
+                                        ),
+                                      ),
+
+
+                                    ],
                                   ),
                                 ),
-                              ),
-                            ],
-                          ),
+                                GestureDetector(
+                                  onTap: () {
+                                    makePhoneCall(contact['number']);
+                                  },
+                                  child: Container(
+                                    padding: EdgeInsets.all(8),
+                                    decoration: BoxDecoration(
+                                      color: Colors.blue,
+                                      shape: BoxShape.circle,
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.grey.withOpacity(0.5),
+                                          blurRadius: 5,
+                                          offset: Offset(0, 3),
+                                        ),
+                                      ],
+                                    ),
+                                    child: Icon(
+                                      Icons.call,
+                                      color: Colors.white,
+                                      size: 24,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
 
-                        );
-                      },
-                    ),
-                  ],
+                          );
+                        },
+                      ),
+                    ],
+                  ),
                 ),
               );
+
             },
           ),
           ),
@@ -1135,7 +1220,15 @@ class _HealthcareScreenState extends State<HealthcareScreen> {
           ),
         ),
 
-        body: Column(
+        body: _medications.where((med) => med.daysOfWeek.contains(today.weekday)).isEmpty ?  Center(
+            child: Text(
+                'Click the + icon to add medication',
+                style: TextStyle(
+                  fontFamily: 'Montserrat',
+                  fontSize: 18,
+                  color: Colors.black,
+
+                ))) : Column(
           children: [
 
             Padding(padding: EdgeInsets.all(25),
@@ -1172,19 +1265,33 @@ class _HealthcareScreenState extends State<HealthcareScreen> {
                         context: context,
                         builder: (BuildContext context) {
                           return AlertDialog(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15.0),
+                            ),
                             title: Text('Confirm Delete'),
-                            content: Text('Are you sure you want to delete this medication?'),
+                            content: Padding(
+                              padding: EdgeInsets.all(0.0),
+                              child: Text('Are you sure you want to delete this medication?'),
+                            ),
+                            backgroundColor: Colors.white,
                             actions: [
                               TextButton(
                                 onPressed: () => Navigator.of(context).pop(false),
                                 child: Text('CANCEL'),
                               ),
-                              TextButton(
+                              ElevatedButton(
                                 onPressed: () => Navigator.of(context).pop(true),
+                                style: ElevatedButton.styleFrom(
+                                  primary: Colors.red,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10.0),
+                                  ),
+                                ),
                                 child: Text('DELETE'),
                               ),
                             ],
                           );
+
                         },
                       );
                     },
@@ -1232,6 +1339,9 @@ class _HealthcareScreenState extends State<HealthcareScreen> {
 
 
               return AlertDialog(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16.0),
+                ),
                 title: Text('Add Medication'),
                 content: StatefulBuilder(
                   builder: (BuildContext context, StateSetter setState) {
@@ -1242,18 +1352,29 @@ class _HealthcareScreenState extends State<HealthcareScreen> {
                           TextField(
                             decoration: InputDecoration(
                               labelText: 'Medication Name',
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
                             ),
                             onChanged: (value) => name = value,
                           ),
+                          SizedBox(height: 16.0),
                           TextField(
                             decoration: InputDecoration(
                               labelText: 'Dosage',
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
                             ),
                             onChanged: (value) => dosage = value,
                           ),
+                          SizedBox(height: 16.0),
                           TextField(
                             decoration: InputDecoration(
                               labelText: 'Description',
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
                             ),
                             onChanged: (value) => description = value,
                           ),
@@ -1268,17 +1389,14 @@ class _HealthcareScreenState extends State<HealthcareScreen> {
                               width: 120.0,
                               height: 48.0,
                               decoration: BoxDecoration(
-                                border: Border.all(
-                                  color: Color.fromRGBO(255, 96, 56, 1),
-                                  width: 2.0,
-                                ),
                                 borderRadius: BorderRadius.circular(8.0),
+                                color: Color.fromRGBO(245, 245, 245, 1),
                               ),
                               child: Center(
                                 child: Text(
                                   _getTimeOfDayString(timeOfDay),
                                   style: TextStyle(
-                                    color: Color.fromRGBO(255, 96, 56, 1),
+                                    color: Color.fromRGBO(0, 0, 0, 0.7),
                                     fontWeight: FontWeight.bold,
                                     fontSize: 18.0,
                                   ),
@@ -1306,8 +1424,8 @@ class _HealthcareScreenState extends State<HealthcareScreen> {
                                     print(_selectedDaysOfWeek.toString());
                                   },
                                   child: Container(
-                                    width: 32.0,
-                                    height: 32.0,
+                                    width: 28.0,
+                                    height: 28.0,
                                     decoration: BoxDecoration(
                                       shape: BoxShape.circle,
                                       color: _selectedDaysOfWeek.contains(i)
@@ -1322,6 +1440,7 @@ class _HealthcareScreenState extends State<HealthcareScreen> {
                                               ? Color.fromRGBO(255, 232, 230, 1)
                                               : Colors.black,
                                           fontWeight: FontWeight.bold,
+                                          fontSize: 12.0,
                                         ),
                                       ),
                                     ),
@@ -1329,9 +1448,10 @@ class _HealthcareScreenState extends State<HealthcareScreen> {
                                 ),
                             ],
                           ),
+
+
                         ],
                       ),
-
                     );
                   },
                 ),
@@ -1712,53 +1832,71 @@ class _EmergencyContactScreenState extends State<EmergencyContactScreen> {
               'Emergency Contact',
               style: TextStyle(
                 fontFamily: 'Montserrat',
-                fontSize: 18,
+                fontSize: 22,
                 fontWeight: FontWeight.bold,
                 color: Colors.black,
-
-        ),
+              ),
             ),
-            SizedBox(height: 8),
+            SizedBox(height: 12),
             TextField(
               controller: _emergencyContactController,
               keyboardType: TextInputType.phone,
               style: TextStyle(
                 fontFamily: 'Montserrat',
+                fontSize: 16,
                 color: Color.fromRGBO(255, 232, 230, 1),
               ),
               decoration: InputDecoration(
                 hintText: 'Enter emergency contact number',
+                filled: true,
+                fillColor: Colors.white,
                 border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  borderSide: BorderSide.none,
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  borderSide: BorderSide.none,
                 ),
               ),
             ),
-            SizedBox(height: 16),
+            SizedBox(height: 24),
             Text(
               'Emergency Contacts to Notify',
               style: TextStyle(
                 fontFamily: 'Montserrat',
-                fontSize: 18,
+                fontSize: 22,
                 fontWeight: FontWeight.bold,
-                  color: Colors.black,
+                color: Colors.black,
               ),
             ),
-            SizedBox(height: 8),
+            SizedBox(height: 12),
             for (int i = 0; i < 3; i++)
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 8),
                 child: TextField(
                   style: TextStyle(
                     fontFamily: 'Montserrat',
+                    fontSize: 16,
                   ),
                   controller: _contactControllers[i],
                   keyboardType: TextInputType.phone,
                   decoration: InputDecoration(
                     hintText: 'Enter contact number ${i + 1}',
-                    border: OutlineInputBorder(),
-
+                    filled: true,
+                    fillColor: Colors.white,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: BorderSide.none,
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: BorderSide.none,
+                    ),
                   ),
                 ),
               ),
+
             SizedBox(height: 25),
             ElevatedButton(
               onPressed: () async {
