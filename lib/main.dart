@@ -78,7 +78,7 @@ class _LogoScreenState extends State<LogoScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(255, 232, 230, 1),
+      //backgroundColor: Color.fromRGBO(255, 232, 230, 1),
       body: Center(
         child: Container(
           width: 150,
@@ -148,8 +148,9 @@ class _IntroScreenState extends State<IntroScreen> {
                         Text(
                           services[index]["title"]!,
                           style: TextStyle(
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold,
+                            fontFamily: 'Montserrat',
+                            fontSize: 16,
+                            //fontWeight: FontWeight.bold,
                           ),
                         ),
                         SizedBox(height: 10),
@@ -157,6 +158,7 @@ class _IntroScreenState extends State<IntroScreen> {
                           services[index]["description"]!,
                           textAlign: TextAlign.center,
                           style: TextStyle(
+                            fontFamily: 'Montserrat',
                             fontSize: 16,
                             color: Colors.grey[700],
                           ),
@@ -224,7 +226,8 @@ class SOSPage extends StatelessWidget {
               child: Text(
                 'Get Started',
                 style: TextStyle(
-                  color: Colors.red,
+                  fontFamily: 'Montserrat',
+                  color: Colors.black,
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),
@@ -355,9 +358,10 @@ class MainScreen extends StatelessWidget {
                           Text(
                             'Quick Calling',
                             style: TextStyle(
+                              fontFamily: 'Montserrat',
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
-                              color: Colors.red,
+                              color: Colors.black,
                             ),
                           ),
                         ],
