@@ -260,8 +260,8 @@ class MainScreen extends StatelessWidget {
                   'SAHAYAK',
                   style: TextStyle(
                     fontFamily: 'Nunito',
-                    color: Colors.black,
-                    fontSize: 16,
+                    color: Color.fromRGBO(255, 96, 56, 1),
+                    fontSize: 36,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -360,7 +360,7 @@ class MainScreen extends StatelessWidget {
                             style: TextStyle(
                               fontFamily: 'Montserrat',
                               fontSize: 16,
-                              fontWeight: FontWeight.bold,
+                              //fontWeight: FontWeight.bold,
                               color: Colors.black,
                             ),
                           ),
