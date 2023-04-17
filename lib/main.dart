@@ -80,16 +80,7 @@ class _LogoScreenState extends State<LogoScreen> {
     return Scaffold(
       backgroundColor: Color.fromRGBO(255, 232, 230, 1),
       body: Center(
-        child: Container(
-          width: 150,
-          height: 150,
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage('assets/images/logo.png'),
-              fit: BoxFit.cover,
-            ),
-          ),
-        ),
+        child: Image.asset('assets/logo.png'),
       ),
     );
   }
