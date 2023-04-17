@@ -78,6 +78,7 @@ class _LogoScreenState extends State<LogoScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromRGBO(255, 232, 230, 1),
       body: Center(
         child: Container(
           width: 150,
@@ -127,6 +128,7 @@ class _IntroScreenState extends State<IntroScreen> {
   Widget build(BuildContext context) {
     if(_showIntro) {
       return Scaffold(
+        backgroundColor: Color.fromRGBO(255, 232, 230, 1),
         body: SafeArea(
           child: Column(
             children: [
@@ -305,7 +307,7 @@ class MainScreen extends StatelessWidget {
           ],
         ),
       ),
-      backgroundColor: Colors.white,
+      backgroundColor: Color.fromRGBO(255, 232, 230, 1),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
