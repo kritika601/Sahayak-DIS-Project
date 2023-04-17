@@ -85,6 +85,9 @@ flutter:
         - asset: fonts/Montserrat-Regular.ttf
         - asset: fonts/Montserrat-Medium.ttf
         - asset: fonts/Montserrat-Bold.ttf
+    - family: Nunito
+      fonts:
+        - asset: fonts/Nunito-SemiBold.ttf
   #         style: italic
   #   - family: Trajan Pro
   #     fonts:

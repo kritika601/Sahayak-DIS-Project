@@ -78,7 +78,7 @@ class _LogoScreenState extends State<LogoScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //backgroundColor: Color.fromRGBO(255, 232, 230, 1),
+      backgroundColor: Color.fromRGBO(255, 232, 230, 1),
       body: Center(
         child: Container(
           width: 150,
@@ -150,7 +150,7 @@ class _IntroScreenState extends State<IntroScreen> {
                           style: TextStyle(
                             fontFamily: 'Montserrat',
                             fontSize: 16,
-                            //fontWeight: FontWeight.bold,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
                         SizedBox(height: 10),
@@ -158,7 +158,6 @@ class _IntroScreenState extends State<IntroScreen> {
                           services[index]["description"]!,
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                            fontFamily: 'Montserrat',
                             fontSize: 16,
                             color: Colors.grey[700],
                           ),
@@ -228,7 +227,7 @@ class SOSPage extends StatelessWidget {
                 style: TextStyle(
                   fontFamily: 'Montserrat',
                   color: Colors.black,
-                  fontSize: 20,
+                  fontSize: 16,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -260,8 +259,9 @@ class MainScreen extends StatelessWidget {
                 child: Text(
                   'SAHAYAK',
                   style: TextStyle(
+                    fontFamily: 'Nunito',
                     color: Colors.black,
-                    fontSize: 24,
+                    fontSize: 16,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -359,7 +359,7 @@ class MainScreen extends StatelessWidget {
                             'Quick Calling',
                             style: TextStyle(
                               fontFamily: 'Montserrat',
-                              fontSize: 20,
+                              fontSize: 16,
                               fontWeight: FontWeight.bold,
                               color: Colors.black,
                             ),
