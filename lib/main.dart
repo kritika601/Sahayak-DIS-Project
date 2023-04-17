@@ -606,7 +606,7 @@ class _QuickCallingScreenState extends State<QuickCallingScreen> {
       appBar: AppBar(
         backgroundColor: Color.fromRGBO(255, 232, 230, 1),
         title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             GestureDetector(
               onTap: () {
@@ -614,18 +614,16 @@ class _QuickCallingScreenState extends State<QuickCallingScreen> {
                   context,
                   MaterialPageRoute(builder: (context) => MainScreen()),
                 );
-
               },
               child: Container(
                 // margin: EdgeInsets.only(left: 16),
-                margin: EdgeInsets.only(right: 47),
-
+                margin: EdgeInsets.only(right: 20),
                 child: Text(
                   'SAHAYAK',
                   style: TextStyle(
                     fontFamily: 'Nunito',
                     color: Color.fromRGBO(255, 96, 56, 1),
-                    fontSize: 36,
+                    fontSize: 27,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -641,10 +639,17 @@ class _QuickCallingScreenState extends State<QuickCallingScreen> {
                     );
                   },
                   child: Container(
-                    margin: EdgeInsets.only(right: 16),
-                    child: CircleAvatar(
-                      backgroundColor: Colors.blue,
-                      child: Icon(Icons.call),
+                    // margin: EdgeInsets.only(right:5),
+
+                    child: IconButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => QuickCallingScreen()),
+                        );
+                      },
+                      icon: Image.asset('assets/Call_icon.png'),
+                      iconSize: 40,
                     ),
                   ),
                 ),
@@ -657,10 +662,16 @@ class _QuickCallingScreenState extends State<QuickCallingScreen> {
 
                   },
                   child: Container(
-                    margin: EdgeInsets.only(right: 16),
-                    child: CircleAvatar(
-                      backgroundColor: Colors.green,
-                      child: Icon(Icons.local_hospital),
+                    // margin: EdgeInsets.only(right: 16),
+                    child: IconButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => HealthcareScreen()),
+                        );
+                      },
+                      icon: Image.asset('assets/Healthcare_icon.png'),
+                      iconSize: 40,
                     ),
                   ),
                 ),
@@ -693,10 +704,30 @@ class _QuickCallingScreenState extends State<QuickCallingScreen> {
                     );
                   },
                   child: Container(
-                    margin: EdgeInsets.only(right: 16),
-                    child: CircleAvatar(
-                      backgroundColor: Colors.red,
-                      child: Icon(Icons.warning),
+                    // margin: EdgeInsets.only(right: 16),
+                    child: IconButton(
+                      onPressed: () async {
+                        // Read emergency contact and contacts list from storage
+                        SharedPreferences prefs = await SharedPreferences.getInstance();
+                        String emergencyNumber = prefs.getString('emergency_contact') ?? '911';
+                        List<String> recipients = List<String>.from(prefs.getStringList('emergency_contacts') ?? []);
+                        print(emergencyNumber);
+                        print(recipients.toString());
+                        // Call emergency contact
+                        launch("tel:$emergencyNumber");
+
+                        // Send emergency SMS
+                        String message = 'Emergency! Please help me!'; // Change this to your emergency SMS message
+                        recipients.forEach((recipient) async {
+                          String _result = await sendSMS(
+                            message: message,
+                            recipients: [recipient],
+                          );
+                          print(_result);
+                        });
+                      },
+                      icon: Image.asset('assets/SOS_icon.png'),
+                      iconSize: 40,
                     ),
                   ),
                 ),
@@ -706,7 +737,15 @@ class _QuickCallingScreenState extends State<QuickCallingScreen> {
         ),
       ),
 
-      body: categories.isEmpty ? Center(child: Text('Click the + icon to add contacts', style: TextStyle(color: Colors.grey))) : Column(
+      body: categories.isEmpty ? Center(
+          child: Text(
+              'Click the + icon to add contacts',
+              style: TextStyle(
+                fontFamily: 'Montserrat',
+                fontSize: 22,
+                color: Colors.black,
+
+              ))) : Column(
         children: [
           Expanded(
             child: ListView.builder(
@@ -831,7 +870,11 @@ class _QuickCallingScreenState extends State<QuickCallingScreen> {
           _showAddContactDialog(context);
           // Display popup to add new contact
         },
-        child: Icon(Icons.add),
+        backgroundColor: Color.fromRGBO(255, 232, 230, 1),
+        child: Icon(
+            Icons.add,
+          color: Color.fromRGBO(255, 96, 56, 1),
+        ),
       ),
     );
   }
