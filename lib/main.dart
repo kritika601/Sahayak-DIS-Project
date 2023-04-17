@@ -149,7 +149,7 @@ class _IntroScreenState extends State<IntroScreen> {
                           services[index]["title"]!,
                           style: TextStyle(
                             fontFamily: 'Montserrat',
-                            fontSize: 16,
+                            fontSize: 24,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -227,7 +227,7 @@ class SOSPage extends StatelessWidget {
                 style: TextStyle(
                   fontFamily: 'Montserrat',
                   color: Colors.black,
-                  fontSize: 16,
+                  fontSize: 24,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -396,9 +396,10 @@ class MainScreen extends StatelessWidget {
                           Text(
                             'Healthcare',
                             style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.red,
+                              fontFamily: 'Montserrat',
+                              fontSize: 16,
+                              //fontWeight: FontWeight.bold,
+                              color: Colors.black,
                             ),
                           ),
                         ],
@@ -453,9 +454,10 @@ class MainScreen extends StatelessWidget {
                           Text(
                             'SOS',
                             style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.red,
+                              fontFamily: 'Montserrat',
+                              fontSize: 16,
+                              //fontWeight: FontWeight.bold,
+                              color: Colors.black,
                             ),
                           ),
                         ],
@@ -592,8 +594,9 @@ class _QuickCallingScreenState extends State<QuickCallingScreen> {
                 child: Text(
                   'SAHAYAK',
                   style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 24,
+                    fontFamily: 'Nunito',
+                    color: Color.fromRGBO(255, 96, 56, 1),
+                    fontSize: 36,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -951,8 +954,9 @@ class _HealthcareScreenState extends State<HealthcareScreen> {
                 child: Text(
                   'SAHAYAK',
                   style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 24,
+                    fontFamily: 'Nunito',
+                    color: Color.fromRGBO(255, 96, 56, 1),
+                    fontSize: 36,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -1040,9 +1044,10 @@ class _HealthcareScreenState extends State<HealthcareScreen> {
 
               greeting,
               style: TextStyle(
+                fontFamily: 'Montserrat',
                 fontSize: 25.0,
                 fontWeight: FontWeight.bold,
-                color: Colors.blueGrey[800],
+                color: Color.fromRGBO(255, 96, 56, 1),
               ),
               textAlign: TextAlign.center,
               // textAlignVertical: TextAlignVertical.center,
@@ -1164,7 +1169,7 @@ class _HealthcareScreenState extends State<HealthcareScreen> {
                               height: 48.0,
                               decoration: BoxDecoration(
                                 border: Border.all(
-                                  color: Colors.blue,
+                                  color: Color.fromRGBO(255, 96, 56, 1),
                                   width: 2.0,
                                 ),
                                 borderRadius: BorderRadius.circular(8.0),
@@ -1173,7 +1178,7 @@ class _HealthcareScreenState extends State<HealthcareScreen> {
                                 child: Text(
                                   _getTimeOfDayString(timeOfDay),
                                   style: TextStyle(
-                                    color: Colors.blue,
+                                    color: Color.fromRGBO(255, 96, 56, 1),
                                     fontWeight: FontWeight.bold,
                                     fontSize: 18.0,
                                   ),
@@ -1395,6 +1400,7 @@ class _MedicationNotificationState extends State<MedicationNotification> {
                     Text(
                       widget.name,
                       style: TextStyle(
+                        fontFamily: 'Montserrat',
                         fontWeight: FontWeight.bold,
                         fontSize: 18.0,
                       ),
@@ -1403,6 +1409,7 @@ class _MedicationNotificationState extends State<MedicationNotification> {
                     Text(
                       widget.dosage,
                       style: TextStyle(
+                        fontFamily: 'Montserrat',
                         fontWeight: FontWeight.w500,
                         fontSize: 16.0,
                       ),
@@ -1411,6 +1418,7 @@ class _MedicationNotificationState extends State<MedicationNotification> {
                     Text(
                       widget.description,
                       style: TextStyle(
+                        fontFamily: 'Montserrat',
                         fontWeight: FontWeight.w500,
                         fontSize: 16.0,
                       ),
@@ -1476,8 +1484,9 @@ class _EmergencyContactScreenState extends State<EmergencyContactScreen> {
                 child: Text(
                   'SAHAYAK',
                   style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 24,
+                    fontFamily: 'Nunito',
+                    color: Color.fromRGBO(255, 96, 56, 1),
+                    fontSize: 36,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -1583,9 +1592,10 @@ class _EmergencyContactScreenState extends State<EmergencyContactScreen> {
             Text(
               'Emergency Contacts to Notify',
               style: TextStyle(
+                fontFamily: 'Montserrat',
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
-                color: Colors.red,
+                color: Color.fromRGBO(255, 96, 56, 1),
               ),
             ),
             SizedBox(height: 8),
