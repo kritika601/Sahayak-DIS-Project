@@ -664,7 +664,7 @@ class _QuickCallingScreenState extends State<QuickCallingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(240, 159, 191, 1),
+      backgroundColor: Color.fromRGBO(164, 209, 180, 1),
       appBar: AppBar(
         backgroundColor: Color.fromRGBO(255, 232, 230, 1),
         title: Row(
@@ -1085,7 +1085,7 @@ class _HealthcareScreenState extends State<HealthcareScreen> {
     DateTime today = DateTime.now();
 
     return Scaffold(
-      backgroundColor: Color.fromRGBO(91, 114, 219, 1),
+      backgroundColor: Color.fromRGBO(137, 166, 252, 1),
         appBar: AppBar(
           backgroundColor: Color.fromRGBO(255, 232, 230, 1),
           title: Row(
@@ -1688,7 +1688,7 @@ class _EmergencyContactScreenState extends State<EmergencyContactScreen> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      backgroundColor: Color.fromRGBO(255, 204, 148, 1),
+      backgroundColor: Color.fromRGBO(255, 123, 90, 1),
       appBar: AppBar(
         backgroundColor: Color.fromRGBO(255, 232, 230, 1),
         title: Row(
@@ -1844,7 +1844,7 @@ class _EmergencyContactScreenState extends State<EmergencyContactScreen> {
               style: TextStyle(
                 fontFamily: 'Montserrat',
                 fontSize: 16,
-                color: Color.fromRGBO(255, 232, 230, 1),
+                color: Colors.black,
               ),
               decoration: InputDecoration(
                 hintText: 'Enter emergency contact number',
