@@ -237,6 +237,9 @@ class MainScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: const BackButton(
+          color: Colors.black,
+        ),
         backgroundColor: Colors.white,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -666,6 +669,9 @@ class _QuickCallingScreenState extends State<QuickCallingScreen> {
     return Scaffold(
       backgroundColor: Color.fromRGBO(164, 209, 180, 1),
       appBar: AppBar(
+        leading: const BackButton(
+          color: Colors.black,
+        ),
         backgroundColor: Color.fromRGBO(255, 232, 230, 1),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -909,7 +915,7 @@ class _QuickCallingScreenState extends State<QuickCallingScreen> {
                                   child: Container(
                                     padding: EdgeInsets.all(8),
                                     decoration: BoxDecoration(
-                                      color: Colors.blue,
+                                      color: Colors.blue[300],
                                       shape: BoxShape.circle,
                                       boxShadow: [
                                         BoxShadow(
@@ -921,8 +927,8 @@ class _QuickCallingScreenState extends State<QuickCallingScreen> {
                                     ),
                                     child: Icon(
                                       Icons.call,
-                                      color: Colors.white,
-                                      size: 24,
+                                      color: Colors.black,
+                                      size: 20,
                                     ),
                                   ),
                                 ),
@@ -1087,6 +1093,9 @@ class _HealthcareScreenState extends State<HealthcareScreen> {
     return Scaffold(
       backgroundColor: Color.fromRGBO(137, 166, 252, 1),
         appBar: AppBar(
+          leading: const BackButton(
+            color: Colors.black,
+          ),
           backgroundColor: Color.fromRGBO(255, 232, 230, 1),
           title: Row(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -1690,6 +1699,9 @@ class _EmergencyContactScreenState extends State<EmergencyContactScreen> {
     return Scaffold(
       backgroundColor: Color.fromRGBO(255, 123, 90, 1),
       appBar: AppBar(
+        leading: const BackButton(
+          color: Colors.black,
+        ),
         backgroundColor: Color.fromRGBO(255, 232, 230, 1),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -1897,7 +1909,7 @@ class _EmergencyContactScreenState extends State<EmergencyContactScreen> {
                 ),
               ),
 
-            SizedBox(height: 25),
+            SizedBox(height: 12),
             ElevatedButton(
               onPressed: () async {
                 // Save emergency contact and contacts list to storage
